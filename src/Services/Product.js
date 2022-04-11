@@ -14,7 +14,26 @@ export default class Product {
                 const responseJson = await response.json();
                 return responseJson;
             } else {
-                return console.error("Error obteniendo productos");
+                console.error("Error obteniendo productos");
+            }
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    async details(id) {
+        try {
+            const uri = `/api/product/${id}`;
+            const options = {
+                method: "GET"
+            };
+
+            const response = await Rest(uri, options);
+            if (response.status === 200) {
+                const responseJson = await response.json();
+                return responseJson;
+            } else {
+                console.error("Error obteniendo detalle del producto");
             }
         } catch (error) {
             throw error;
