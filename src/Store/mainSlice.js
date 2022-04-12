@@ -17,7 +17,7 @@ export const mainSlice = createSlice({
              * descomenta la siguiente linea
              */
             //state.basketCount = action.payload;
-
+            console.log(action);
             state.basketCount ++;
         }
     },
