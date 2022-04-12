@@ -12,13 +12,12 @@ import { NotFound } from './Views/NotFound';
 
 export const App = () => {
 
-
   return (
     <div className="App">
       <BrowserRouter>
         <Header />
         <Routes>
-          <Route path="/" element={<List itemsStorage={itemsStorage} />} />
+          <Route path="/" element={<List />} />
           <Route path="/details/:id" element={<ProductDetails />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
