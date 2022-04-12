@@ -13,9 +13,7 @@ import { useSelector } from 'react-redux';
 import { Link } from "react-router-dom";
 
 export const Header = () => {
-  const { isLoading, basketCount } = useSelector((state) => state.header)
-  const { expire, items } = useSelector((state) => state.items);
-
+  const { isLoading, basketCount } = useSelector((state) => state.main)
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
