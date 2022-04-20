@@ -9,11 +9,13 @@ export const itemsSlice = createSlice({
   reducers: {
     setItems: (state, action) => {
       state.items = action.payload;
-      state.expire =  new Date().getTime() + 3600000;
+    },
+    setExpire: (state, action) => {
+      state.expire =  action.payload;
     },
   },
 })
 
-export const { setItems } = itemsSlice.actions
+export const { setItems, setExpire } = itemsSlice.actions
 
 export default itemsSlice.reducer

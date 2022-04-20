@@ -5,11 +5,12 @@ import { Item } from "../Components/Item";
 import { Search } from "../Components/Search";
 import { useDispatch } from "react-redux";
 import { toogle } from "../Store/mainSlice";
-import { setItems } from "../Store/itemsSlice";
+import { setItems, setExpire } from "../Store/itemsSlice";
 import { useSelector } from "react-redux";
 
-export const List = () => {
+export const List = props => {
   const { expire, items } = useSelector(state => state.items);
+  const { itemsBrowser, expireBrowser } = props;
   const [search, setSearch] = useState();
   const [productFilter, setProductFilter] = useState();
   const productService = new Product();
@@ -19,7 +20,7 @@ export const List = () => {
     dispatch(toogle());
     const productsFetched = await productService.all();
     dispatch(setItems(productsFetched));
-    localStorage.clear();
+    dispatch(setExpire(new Date().getTime() + 3600000));
     dispatch(toogle());
   };
 
@@ -47,10 +48,9 @@ export const List = () => {
 
   useEffect(() => {
     const now = new Date().getTime();
-    const browserItems = JSON.parse(localStorage.getItem("items_commerce"));
-
-    if (browserItems) dispatch(setItems(browserItems));
-    else if (!expire || now > expire) {
+    if (itemsBrowser.length && !items && (now < expireBrowser || now < expire)) {
+      dispatch(setItems(itemsBrowser));
+    } else if (!items || now > expire) {
       FetchProduct();
     }
   }, []);
