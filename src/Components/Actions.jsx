@@ -28,8 +28,8 @@ export const Actions = (props) => {
   }
 
   return (
-    <Grid container spacing={2} sx={{ borderLeft: '6px solid #ccc', backgroundColor: '#ddffff', borderColor: '#2196F3' }}>
-      <Grid item xs={12}>
+    <Grid container sx={{ borderLeft: '6px solid', backgroundColor: '#ddffff', borderColor: '#2196F3' }}>
+      <Grid item xs={12} sx={{ paddingLeft: 4 }}>
         <Typography sx={{ mb: 2, textAlign: 'left' }} variant="h5" component="div">
           Actions
         </Typography>
